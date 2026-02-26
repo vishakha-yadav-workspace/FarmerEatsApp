@@ -1,0 +1,47 @@
+package com.vishakha.softwarelabassignmentapp.authFregment
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.vishakha.softwarelabassignmentapp.R
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.vishakha.softwarelabassignmentapp.databinding.FragmentOtpVerifyBinding
+
+class OtpVerifyFragment : Fragment() {
+
+    private var _binding: FragmentOtpVerifyBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentOtpVerifyBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnVerify.setOnClickListener {
+            val otp = binding.etOtp.text.toString().trim()
+            if (otp.length != 6) {
+                Toast.makeText(context, "Enter 6-digit OTP", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Future mein API call kar sakte ho verify OTP ke liye
+            Toast.makeText(context, "OTP Verified!", Toast.LENGTH_SHORT).show()
+
+            findNavController().navigate(R.id.action_otp_to_reset)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}

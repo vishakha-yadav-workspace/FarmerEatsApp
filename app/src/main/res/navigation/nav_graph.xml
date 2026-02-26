@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <!-- Splash Screen -->
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.vishakha.softwarelabassignmentapp.SplashFragment"
+        android:label="Splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splash_to_onboarding"
+            app:destination="@id/onboardingFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Onboarding Screen (ViewPager wala) -->
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.vishakha.softwarelabassignmentapp.fragmentOnboarding.OnboardingFragment1"
+        android:label="Onboarding"
+        tools:layout="@layout/fragment_on_boarding1">
+        <action
+            android:id="@+id/action_onboarding_to_login"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/onboardingFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Login Screen -->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.vishakha.softwarelabassignmentapp.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_to_signup"
+            app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_login_to_forgot"
+            app:destination="@id/forgotPasswordFragment" />
+        <action
+            android:id="@+id/action_login_to_home"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Signup Step 1 -->
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.vishakha.softwarelabassignmentapp.signupFragment.SignupStep1Fragment"
+        android:label="Signup - Step 1"
+        tools:layout="@layout/fragment_signup_step1">
+        <action
+            android:id="@+id/action_signup_to_step2"
+            app:destination="@id/signupStep2Fragment"/>
+                   <!-- Login pe wapas jaane ka action (tvLogin click se) -->
+        <action
+            android:id="@+id/action_signup_to_login"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <!-- Signup Step 2 (Farm Info) -->
+    <fragment
+        android:id="@+id/signupStep2Fragment"
+        android:name="com.vishakha.softwarelabassignmentapp.signupFragment.SignupStep2Fragment"
+        android:label="Signup - Farm Info"
+        tools:layout="@layout/fragment_signup_step2">
+
+        <argument android:name="fullName" app:argType="string" />
+        <argument android:name="email" app:argType="string" />
+        <argument android:name="phone" app:argType="string" />
+        <argument android:name="password" app:argType="string" />
+
+
+        <action
+            android:id="@+id/action_signupStep2Fragment_to_signupStep3Fragment"
+            app:destination="@id/signupStep3Fragment"/>
+
+
+    </fragment>
+
+    <!-- Signup Step 3 (Business Hours) -->
+    <fragment
+        android:id="@+id/signupStep3Fragment"
+        android:name="com.vishakha.softwarelabassignmentapp.signupFragment.SignupStep3Fragment"
+        android:label="Signup - Business Hours"
+        tools:layout="@layout/fragment_signup_step3">
+
+            <argument android:name="fullName" app:argType="string" />
+            <argument android:name="email" app:argType="string" />
+            <argument android:name="phone" app:argType="string" />
+            <argument android:name="password" app:argType="string" />
+            <argument android:name="businessName" app:argType="string" />
+            <argument android:name="informalName" app:argType="string" />
+            <argument android:name="address" app:argType="string" />
+            <argument android:name="city" app:argType="string" />
+            <argument android:name="state" app:argType="string" />
+            <argument android:name="zipCode" app:argType="integer" />
+            <argument android:name="registrationProof" app:argType="string" />
+        <action
+            android:id="@+id/action_step3_to_step4"
+            app:destination="@id/signupStep4Fragment"/>
+    </fragment>
+
+    <!-- Signup Step 4 (Verification) -->
+    <fragment
+        android:id="@+id/signupStep4Fragment"
+        android:name="com.vishakha.softwarelabassignmentapp.signupFragment.SignupStep4Fragment"
+        android:label="Signup - Verification"
+        tools:layout="@layout/fragment_signup_step4">
+
+        <argument android:name="fullName" app:argType="string"/>
+        <argument android:name="email" app:argType="string"/>
+        <argument android:name="phone" app:argType="string"/>
+        <argument android:name="password" app:argType="string"/>
+
+        <!-- Step2 -->
+        <argument android:name="businessName" app:argType="string"/>
+        <argument android:name="informalName" app:argType="string"/>
+        <argument android:name="address" app:argType="string"/>
+        <argument android:name="city" app:argType="string"/>
+        <argument android:name="state" app:argType="string"/>
+        <argument android:name="zipCode" app:argType="integer"/>
+        <argument android:name="registrationProof" app:argType="string"/>
+
+        <!-- Step3 -->
+        <argument android:name="businessHours" app:argType="string"/>
+
+        <action
+            android:id="@+id/action_step4_to_home"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_step4_to_login"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <!-- Forgot Password -->
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.vishakha.softwarelabassignmentapp.authFregment.ForgotPasswordFragment"
+        android:label="Forgot Password"
+        tools:layout="@layout/fragment_forgot_password">
+        <action
+            android:id="@+id/action_forgot_to_otp"
+            app:destination="@id/otpVerifyFragment" />
+    </fragment>
+
+    <!-- OTP Verify -->
+    <fragment
+        android:id="@+id/otpVerifyFragment"
+        android:name="com.vishakha.softwarelabassignmentapp.authFregment.OtpVerifyFragment"
+        android:label="Verify OTP"
+        tools:layout="@layout/fragment_otp_verify">
+        <action
+            android:id="@+id/action_otp_to_reset"
+            app:destination="@id/resetPasswordFragment" />
+    </fragment>
+
+    <!-- Reset Password -->
+    <fragment
+        android:id="@+id/resetPasswordFragment"
+        android:name="com.vishakha.softwarelabassignmentapp.authFregment.ResetPasswordFragment"
+        android:label="Reset Password"
+        tools:layout="@layout/fragment_reset_password">
+        <action
+            android:id="@+id/action_reset_to_login"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Home/Dashboard -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.vishakha.softwarelabassignmentapp.authFregment.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+
+</navigation>
